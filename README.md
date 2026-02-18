@@ -116,8 +116,8 @@ The goal is to generate a measurable competitive edge through analytics.
 
 ## 🏈 Supported Sports
 
-- NFL Fantasy Football (in development)
-- NBA Fantasy Basketball (planned)
+- NBA Fantasy Basketball (in development)
+- NFL Fantasy Football (planned)
 - Built for multi-sport scalability
 
 ---
