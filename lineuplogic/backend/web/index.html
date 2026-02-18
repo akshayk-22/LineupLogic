@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LineupLogic — Waiver Recs</title>
+
+    <!-- FastAPI serves backend/web assets from /static -->
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">LL</div>
+        <div class="brandtext">
+          <div class="title">LineupLogic</div>
+          <div class="subtitle">NBA Waiver Recommendations</div>
+        </div>
+      </div>
+
+      <div class="status">
+        <span id="apiStatusDot" class="dot"></span>
+        <span id="apiStatusText" class="statusText">Checking API…</span>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="controls card">
+        <div class="controlsGrid">
+          <div class="field">
+            <label for="teamSelect">Team</label>
+            <select id="teamSelect"></select>
+          </div>
+
+          <div class="field">
+            <label for="daysInput">Days window</label>
+            <input id="daysInput" type="number" min="1" max="60" value="21" />
+          </div>
+
+          <div class="field">
+            <label for="poolInput">Pool size</label>
+            <input id="poolInput" type="number" min="25" max="1000" value="300" />
+          </div>
+
+          <div class="field">
+            <label for="limitInput">Waiver limit</label>
+            <input id="limitInput" type="number" min="1" max="50" value="10" />
+          </div>
+        </div>
+
+        <div class="controlsActions">
+          <button id="refreshRosterBtn" class="btn secondary">Refresh roster</button>
+          <button id="bestSwapsBtn" class="btn primary">Best overall swaps</button>
+        </div>
+
+        <div class="hint">
+          Tip: Click a player on the left to generate add/drop recommendations for dropping that player.
+        </div>
+      </section>
+
+      <section class="grid">
+        <!-- LEFT: Roster -->
+        <section class="card panel">
+          <div class="panelHeader">
+            <div>
+              <h2>Roster</h2>
+              <div class="muted" id="rosterMeta">—</div>
+            </div>
+            <div class="pillRow">
+              <span class="pill" id="selectedDropPill">Drop: none</span>
+            </div>
+          </div>
+
+          <div id="rosterList" class="list"></div>
+
+          <div class="panelFooter muted">
+            Sorted from lowest to highest projected points (so the bottom are your best guys).
+          </div>
+        </section>
+
+        <!-- RIGHT: Recommendations -->
+        <section class="card panel">
+          <div class="panelHeader">
+            <div>
+              <h2>Recommendations</h2>
+              <div class="muted" id="recsMeta">—</div>
+            </div>
+          </div>
+
+          <div id="recsList" class="recs"></div>
+
+          <div class="panelFooter muted">
+            Expected gain is based on projected points over the selected days window.
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <footer class="footer muted">
+      LineupLogic demo UI • Uses your local FastAPI backend
+    </footer>
+
+    <!-- FastAPI serves backend/web assets from /static -->
+    <script defer src="/static/app.js"></script>
+  </body>
+</html>
